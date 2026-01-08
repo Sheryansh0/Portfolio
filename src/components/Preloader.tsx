@@ -1,5 +1,5 @@
-import { useEffect, useRef } from 'react';
-import gsap from 'gsap';
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
 
 interface PreloaderProps {
   onComplete: () => void;
@@ -19,24 +19,30 @@ const Preloader = ({ onComplete }: PreloaderProps) => {
     // Animate name
     tl.fromTo(
       nameRef.current,
-      { opacity: 0, y: 30, filter: 'blur(10px)' },
-      { opacity: 1, y: 0, filter: 'blur(0px)', duration: 0.8, ease: 'power3.out' }
+      { opacity: 0, y: 30, filter: "blur(10px)" },
+      {
+        opacity: 1,
+        y: 0,
+        filter: "blur(0px)",
+        duration: 0.8,
+        ease: "power3.out",
+      }
     );
 
     // Animate subtitle
     tl.fromTo(
       subtitleRef.current,
       { opacity: 0, y: 20 },
-      { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' },
-      '-=0.4'
+      { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" },
+      "-=0.4"
     );
 
     // Animate progress bar
     tl.to(progressBarRef.current, {
-      width: '100%',
+      width: "100%",
       duration: 2,
-      ease: 'power2.out',
-      onUpdate: function() {
+      ease: "power2.out",
+      onUpdate: function () {
         const progress = Math.round(this.progress() * 100);
         if (progressTextRef.current) {
           progressTextRef.current.textContent = `${progress}%`;
@@ -49,10 +55,10 @@ const Preloader = ({ onComplete }: PreloaderProps) => {
       opacity: 0,
       scale: 0.95,
       duration: 0.6,
-      ease: 'power2.inOut',
+      ease: "power2.inOut",
       onComplete: () => {
         if (preloaderRef.current) {
-          preloaderRef.current.style.display = 'none';
+          preloaderRef.current.style.display = "none";
         }
         onComplete();
       },
@@ -64,10 +70,13 @@ const Preloader = ({ onComplete }: PreloaderProps) => {
   }, [onComplete]);
 
   return (
-    <div ref={preloaderRef} className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-background">
+    <div
+      ref={preloaderRef}
+      className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-background"
+    >
       {/* Name with gradient */}
       <div ref={nameRef} className="mb-2">
-        <h1 className="text-5xl md:text-7xl font-bold italic tracking-tight bg-gradient-to-r from-[hsl(var(--primary))] via-[hsl(280,80%,60%)] to-[hsl(var(--accent))] bg-clip-text text-transparent">
+        <h1 className="text-5xl md:text-7xl font-bold tracking-tight bg-gradient-to-r from-[hsl(var(--primary))] via-[hsl(280,80%,60%)] to-[hsl(var(--accent))] bg-clip-text text-transparent">
           SHREYANSH
         </h1>
       </div>
@@ -80,12 +89,17 @@ const Preloader = ({ onComplete }: PreloaderProps) => {
       </div>
 
       {/* Progress text */}
-      <span ref={progressTextRef} className="text-primary text-sm mb-2 font-medium">0%</span>
+      <span
+        ref={progressTextRef}
+        className="text-primary text-sm mb-2 font-medium"
+      >
+        0%
+      </span>
 
       {/* Progress bar container */}
       <div className="w-64 md:w-80 h-1 bg-muted/30 rounded-full overflow-hidden mb-4">
-        <div 
-          ref={progressBarRef} 
+        <div
+          ref={progressBarRef}
           className="h-full w-0 bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] rounded-full"
         />
       </div>

@@ -1,7 +1,12 @@
-import { useEffect, useRef } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { GithubLogo, LinkedinLogo, EnvelopeSimple, Heart } from '@phosphor-icons/react';
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import {
+  GithubLogo,
+  LinkedinLogo,
+  EnvelopeSimple,
+  Heart,
+} from "@phosphor-icons/react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -14,18 +19,18 @@ const Footer = () => {
 
     gsap.fromTo(
       footer.children,
-      { y: 40, opacity: 0, filter: 'blur(5px)' },
+      { y: 40, opacity: 0, filter: "blur(5px)" },
       {
         y: 0,
         opacity: 1,
-        filter: 'blur(0px)',
+        filter: "blur(0px)",
         duration: 0.8,
         stagger: 0.1,
-        ease: 'power3.out',
+        ease: "power3.out",
         scrollTrigger: {
           trigger: footer,
-          start: 'top 95%',
-          toggleActions: 'play none none reverse',
+          start: "top 95%",
+          toggleActions: "play none none reverse",
         },
       }
     );
@@ -38,7 +43,7 @@ const Footer = () => {
   const handleNavClick = (href: string) => {
     const element = document.querySelector(href);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      element.scrollIntoView({ behavior: "smooth" });
     }
   };
 
@@ -53,19 +58,16 @@ const Footer = () => {
 
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-          {/* Logo & tagline */}
+          {/* Tagline */}
           <div className="text-center md:text-left">
-            <a href="#home" className="text-2xl font-bold gradient-text">
-              Shreyansh
-            </a>
-            <p className="text-sm text-muted-foreground mt-2">
+            <p className="text-sm text-muted-foreground">
               Building the future with AI
             </p>
           </div>
 
           {/* Navigation */}
           <nav className="flex flex-wrap justify-center gap-6">
-            {['Home', 'About', 'Projects', 'Contact'].map((item) => (
+            {["Home", "About", "Projects", "Achievements", "Contact"].map((item) => (
               <a
                 key={item}
                 href={`#${item.toLowerCase()}`}
@@ -80,8 +82,7 @@ const Footer = () => {
             ))}
             <a
               href="/resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
+              download="Bachchu_Shreyansh_Resume.pdf"
               className="text-sm text-muted-foreground hover:text-primary transition-colors"
             >
               Resume
@@ -91,7 +92,7 @@ const Footer = () => {
           {/* Social icons */}
           <div className="flex items-center gap-4">
             <a
-              href="https://github.com"
+              href="https://github.com/Sheryansh0"
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-primary transition-colors"
@@ -99,7 +100,7 @@ const Footer = () => {
               <GithubLogo size={20} weight="light" />
             </a>
             <a
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/in/bachchu-shreyansh/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-primary transition-colors"
@@ -107,7 +108,7 @@ const Footer = () => {
               <LinkedinLogo size={20} weight="light" />
             </a>
             <a
-              href="mailto:shreyansh@example.com"
+              href="mailto:bachchushreyansh@gmail.com"
               className="text-muted-foreground hover:text-primary transition-colors"
             >
               <EnvelopeSimple size={20} weight="light" />
@@ -118,7 +119,7 @@ const Footer = () => {
         {/* Copyright */}
         <div className="mt-8 pt-8 border-t border-border text-center">
           <p className="text-sm text-muted-foreground flex items-center justify-center gap-1">
-            Made with <Heart size={14} weight="fill" className="text-primary" /> by Bachchu Shreyansh © {new Date().getFullYear()}
+            Made by Bachchu Shreyansh © {new Date().getFullYear()}
           </p>
         </div>
       </div>

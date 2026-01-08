@@ -1,0 +1,7 @@
+# Redirect rules for Netlify
+# Handle client-side routing - all routes go to index.html
+
+/*    /index.html   200
+
+# Redirect www to non-www (uncomment and update domain when deploying)
+# https://www.shreyansh.dev/*  https://shreyansh.dev/:splat  301!

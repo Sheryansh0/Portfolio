@@ -1,36 +1,38 @@
-import { useEffect, useRef, useState } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { 
-  GithubLogo, 
-  LinkedinLogo, 
+import { useEffect, useRef, useState } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import {
+  GithubLogo,
+  LinkedinLogo,
   TwitterLogo,
   EnvelopeSimple,
   Phone,
   MapPin,
   PaperPlaneTilt,
-  DownloadSimple
-} from '@phosphor-icons/react';
+  CheckCircle,
+  XCircle,
+} from "@phosphor-icons/react";
+import { toast } from "sonner";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const contactInfo = [
   {
     icon: EnvelopeSimple,
-    label: 'Email',
-    value: 'shreyansh@example.com',
-    href: 'mailto:shreyansh@example.com',
+    label: "Email",
+    value: "bachchushreyansh@gmail.com",
+    href: "mailto:bachchushreyansh@gmail.com",
   },
   {
     icon: Phone,
-    label: 'Phone',
-    value: '+91 9876543210',
-    href: 'tel:+919876543210',
+    label: "Phone",
+    value: "+91 9182593182",
+    href: "tel:+919182593182",
   },
   {
     icon: MapPin,
-    label: 'Location',
-    value: 'India',
+    label: "Location",
+    value: "India",
     href: null,
   },
 ];
@@ -42,9 +44,9 @@ const ContactSection = () => {
   const infoRef = useRef<HTMLDivElement>(null);
 
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: '',
+    name: "",
+    email: "",
+    message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -59,53 +61,53 @@ const ContactSection = () => {
     // Title animation
     gsap.fromTo(
       title,
-      { y: 60, opacity: 0, filter: 'blur(10px)' },
+      { y: 60, opacity: 0, filter: "blur(10px)" },
       {
         y: 0,
         opacity: 1,
-        filter: 'blur(0px)',
+        filter: "blur(0px)",
         duration: 1,
-        ease: 'power3.out',
+        ease: "power3.out",
         scrollTrigger: {
           trigger: section,
-          start: 'top 70%',
-          toggleActions: 'play none none reverse',
+          start: "top 70%",
+          toggleActions: "play none none reverse",
         },
       }
     );
 
     // Form inputs animation
     gsap.fromTo(
-      form.querySelectorAll('.form-field'),
+      form.querySelectorAll(".form-field"),
       { x: -60, opacity: 0 },
       {
         x: 0,
         opacity: 1,
         duration: 0.6,
         stagger: 0.1,
-        ease: 'power3.out',
+        ease: "power3.out",
         scrollTrigger: {
           trigger: form,
-          start: 'top 80%',
-          toggleActions: 'play none none reverse',
+          start: "top 80%",
+          toggleActions: "play none none reverse",
         },
       }
     );
 
     // Info cards animation
     gsap.fromTo(
-      info.querySelectorAll('.info-card'),
+      info.querySelectorAll(".info-card"),
       { x: 60, opacity: 0 },
       {
         x: 0,
         opacity: 1,
         duration: 0.6,
         stagger: 0.1,
-        ease: 'power3.out',
+        ease: "power3.out",
         scrollTrigger: {
           trigger: info,
-          start: 'top 80%',
-          toggleActions: 'play none none reverse',
+          start: "top 80%",
+          toggleActions: "play none none reverse",
         },
       }
     );
@@ -119,11 +121,65 @@ const ContactSection = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    try {
+      const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || "1f74f990-c0b4-4754-8eef-2226dcfd2d36";
+      const contactEmail = import.meta.env.VITE_CONTACT_EMAIL || "bachchushreyansh@gmail.com";
+      
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          access_key: accessKey,
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          to_email: contactEmail,
+          subject: `Portfolio Contact: Message from ${formData.name}`,
+        }),
+      });
 
-    // Reset form
-    setFormData({ name: '', email: '', message: '' });
+      const result = await response.json();
+
+      if (result.success) {
+        // Reset form on success
+        setFormData({ name: "", email: "", message: "" });
+        toast.success("Message sent successfully!", {
+          description: "I'll get back to you soon.",
+          icon: <CheckCircle size={20} weight="fill" className="text-green-400" />,
+          style: {
+            background: "rgba(10, 10, 20, 0.95)",
+            border: "1px solid rgba(168, 85, 247, 0.3)",
+            color: "#fff",
+            backdropFilter: "blur(20px)",
+          },
+        });
+      } else {
+        toast.error("Failed to send message", {
+          description: "Please try again or email me directly.",
+          icon: <XCircle size={20} weight="fill" className="text-red-400" />,
+          style: {
+            background: "rgba(10, 10, 20, 0.95)",
+            border: "1px solid rgba(239, 68, 68, 0.3)",
+            color: "#fff",
+            backdropFilter: "blur(20px)",
+          },
+        });
+      }
+    } catch (error) {
+      toast.error("Failed to send message", {
+        description: "Please try again or email me directly.",
+        icon: <XCircle size={20} weight="fill" className="text-red-400" />,
+        style: {
+          background: "rgba(10, 10, 20, 0.95)",
+          border: "1px solid rgba(239, 68, 68, 0.3)",
+          color: "#fff",
+          backdropFilter: "blur(20px)",
+        },
+      });
+    }
+
     setIsSubmitting(false);
 
     // Animate button
@@ -132,12 +188,20 @@ const ContactSection = () => {
       gsap.fromTo(
         button,
         { scale: 1 },
-        { scale: 1.05, duration: 0.2, yoyo: true, repeat: 1, ease: 'power2.out' }
+        {
+          scale: 1.05,
+          duration: 0.2,
+          yoyo: true,
+          repeat: 1,
+          ease: "power2.out",
+        }
       );
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setFormData((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
@@ -164,18 +228,15 @@ const ContactSection = () => {
             Let's Work Together
           </h2>
           <p className="section-subtitle mx-auto">
-            Have a project in mind? Let's discuss how we can bring your ideas to life with AI.
+            Have a project in mind? Let's discuss how we can bring your ideas to
+            life with AI.
           </p>
         </div>
 
         {/* Main content grid */}
         <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
           {/* Contact form */}
-          <form
-            ref={formRef}
-            onSubmit={handleSubmit}
-            className="space-y-6"
-          >
+          <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
             <div className="form-field">
               <label htmlFor="name" className="block text-sm font-medium mb-2">
                 Name
@@ -209,7 +270,10 @@ const ContactSection = () => {
             </div>
 
             <div className="form-field">
-              <label htmlFor="message" className="block text-sm font-medium mb-2">
+              <label
+                htmlFor="message"
+                className="block text-sm font-medium mb-2"
+              >
                 Message
               </label>
               <textarea
@@ -230,7 +294,7 @@ const ContactSection = () => {
               className="w-full py-4 rounded-lg bg-primary text-primary-foreground font-medium flex items-center justify-center gap-2 hover:bg-primary/90 transition-colors disabled:opacity-50"
             >
               {isSubmitting ? (
-                'Sending...'
+                "Sending..."
               ) : (
                 <>
                   Send Message
@@ -251,7 +315,9 @@ const ContactSection = () => {
                     <Icon size={24} weight="light" className="text-primary" />
                   </div>
                   <div>
-                    <p className="text-sm text-muted-foreground">{item.label}</p>
+                    <p className="text-sm text-muted-foreground">
+                      {item.label}
+                    </p>
                     <p className="font-medium text-foreground">{item.value}</p>
                   </div>
                 </div>
@@ -268,53 +334,46 @@ const ContactSection = () => {
 
             {/* Separator */}
             <div className="border-t border-border/30 pt-6">
-              <p className="text-sm text-muted-foreground mb-4">Connect with me</p>
-              
-              <div className="flex items-center gap-3">
+              <p className="text-base text-muted-foreground mb-6">
+                Connect with me
+              </p>
+
+              <div className="flex items-center gap-4">
                 <a
-                  href="https://github.com"
+                  href="https://github.com/Sheryansh0"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 rounded-lg bg-card/30 border border-border/50 hover:border-primary/50 transition-colors group"
+                  className="p-4 rounded-xl bg-card/30 border border-border/50 hover:border-primary/50 hover:bg-card/50 transition-all duration-300 group"
                 >
                   <GithubLogo
-                    size={20}
+                    size={32}
                     weight="light"
                     className="text-muted-foreground group-hover:text-foreground transition-colors"
                   />
                 </a>
                 <a
-                  href="https://linkedin.com"
+                  href="https://www.linkedin.com/in/bachchu-shreyansh/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 rounded-lg bg-card/30 border border-border/50 hover:border-primary/50 transition-colors group"
+                  className="p-4 rounded-xl bg-card/30 border border-border/50 hover:border-primary/50 hover:bg-card/50 transition-all duration-300 group"
                 >
                   <LinkedinLogo
-                    size={20}
+                    size={32}
                     weight="light"
                     className="text-muted-foreground group-hover:text-foreground transition-colors"
                   />
                 </a>
                 <a
-                  href="https://twitter.com"
+                  href="https://x.com/BACHCHUSHR37310"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 rounded-lg bg-card/30 border border-border/50 hover:border-primary/50 transition-colors group"
+                  className="p-4 rounded-xl bg-card/30 border border-border/50 hover:border-primary/50 hover:bg-card/50 transition-all duration-300 group"
                 >
                   <TwitterLogo
-                    size={20}
+                    size={32}
                     weight="light"
                     className="text-muted-foreground group-hover:text-foreground transition-colors"
                   />
-                </a>
-                <a
-                  href="/resume.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-4 py-2 rounded-lg border border-primary/50 text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 flex items-center gap-2 text-sm font-medium"
-                >
-                  <DownloadSimple size={18} weight="light" />
-                  Download CV
                 </a>
               </div>
             </div>

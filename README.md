@@ -1,73 +1,157 @@
-# Welcome to your Lovable project
+# Bachchu Shreyansh Portfolio
 
-## Project info
+A modern, production-ready portfolio website built with React, TypeScript, Vite, and Tailwind CSS featuring stunning 3D animations and glassmorphism design.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+## ✨ Features
 
-## How can I edit this code?
+- **Modern Design**: Glassmorphism UI with neon accents and 3D Three.js background
+- **Performance Optimized**: Code splitting, lazy loading, optimized images
+- **SEO Ready**: Meta tags, Open Graph, sitemap, robots.txt
+- **Accessibility**: ARIA labels, skip links, keyboard navigation
+- **Responsive**: Mobile-first design that works on all devices
+- **Contact Form**: Integrated with Web3Forms for email delivery
+- **Animations**: Smooth GSAP scroll-triggered animations
 
-There are several ways of editing your application.
+## 🚀 Quick Start
 
-**Use Lovable**
+### Prerequisites
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+- Node.js 18+ or Bun
+- npm, yarn, pnpm, or bun
 
-Changes made via Lovable will be committed automatically to this repo.
+### Development
 
-**Use your preferred IDE**
+```bash
+# Install dependencies
+npm install
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Start development server
 npm run dev
+
+# Open http://localhost:8080
 ```
 
-**Edit a file directly in GitHub**
+### Production Build
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+```bash
+# Type check and build
+npm run build
 
-**Use GitHub Codespaces**
+# Preview production build locally
+npm run preview
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+# Or build and preview in one command
+npm run preview:build
+```
 
-## What technologies are used for this project?
+## 📁 Project Structure
 
-This project is built with:
+```
+├── public/
+│   ├── _headers          # Security headers (Netlify/Cloudflare)
+│   ├── _redirects        # SPA routing redirects
+│   ├── robots.txt        # Search engine crawling rules
+│   ├── sitemap.xml       # SEO sitemap
+│   └── site.webmanifest  # PWA manifest
+├── src/
+│   ├── components/       # React components
+│   │   ├── ui/           # Reusable UI components
+│   │   └── ErrorBoundary.tsx
+│   ├── pages/            # Page components
+│   ├── hooks/            # Custom React hooks
+│   ├── lib/              # Utility functions
+│   └── assets/           # Images and static assets
+├── .env.example          # Environment variables template
+├── vercel.json           # Vercel deployment config
+└── vite.config.ts        # Vite configuration
+```
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## ⚙️ Environment Variables
 
-## How can I deploy this project?
+Copy `.env.example` to `.env` and configure:
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+```bash
+# Contact Form
+VITE_WEB3FORMS_ACCESS_KEY=your_access_key_here
 
-## Can I connect a custom domain to my Lovable project?
+# Site Configuration
+VITE_SITE_URL=https://yourdomain.com
+VITE_CONTACT_EMAIL=your@email.com
+```
 
-Yes, you can!
+## 🌐 Deployment
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+### Vercel (Recommended)
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+1. Push to GitHub
+2. Import project on [Vercel](https://vercel.com)
+3. Deploy automatically
+
+### Netlify
+
+1. Push to GitHub
+2. Import on [Netlify](https://netlify.com)
+3. Build command: `npm run build`
+4. Publish directory: `dist`
+
+### Manual Deployment
+
+```bash
+npm run build
+# Upload contents of `dist/` folder to your hosting
+```
+
+## 🔧 Scripts
+
+| Script | Description |
+|--------|-------------|
+| `npm run dev` | Start development server |
+| `npm run build` | Type check and production build |
+| `npm run preview` | Preview production build |
+| `npm run lint` | Run ESLint |
+| `npm run lint:fix` | Fix ESLint errors |
+| `npm run type-check` | TypeScript type checking |
+| `npm run analyze` | Analyze bundle size |
+
+## 📦 Tech Stack
+
+- **Framework**: React 18
+- **Language**: TypeScript
+- **Bundler**: Vite
+- **Styling**: Tailwind CSS
+- **Animations**: GSAP, Three.js
+- **UI Components**: Radix UI, shadcn/ui
+- **Form Handling**: Web3Forms
+
+## 📝 Production Checklist
+
+- [ ] Update canonical URL in `index.html`
+- [ ] Update sitemap.xml with your domain
+- [ ] Update robots.txt sitemap URL
+- [ ] Configure Web3Forms access key
+- [ ] Update social media handles
+- [ ] Optimize and compress images (use WebP)
+- [ ] Test on multiple devices
+- [ ] Run Lighthouse audit
+
+## 🖼️ Image Optimization
+
+For best performance, optimize your images:
+
+```bash
+# Convert images to WebP format (recommended)
+# Use tools like squoosh.app or imagemin
+
+# Recommended sizes:
+# - Project images: 800x450px (16:9), WebP, < 100KB
+# - Profile image: 500x500px, WebP, < 150KB
+# - Logo: 192x192px, PNG/WebP
+```
+
+## 📄 License
+
+MIT License - feel free to use this template for your own portfolio!
+
+---
+
+Built with ❤️ by Bachchu Shreyansh

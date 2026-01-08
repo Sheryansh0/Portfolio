@@ -1,6 +1,8 @@
-import { useEffect, useRef } from 'react';
-import gsap from 'gsap';
-import { DownloadSimple } from '@phosphor-icons/react';
+import { useEffect, useRef, useState, lazy, Suspense } from "react";
+import gsap from "gsap";
+import { DownloadSimple } from "@phosphor-icons/react";
+
+const ThreeBackground = lazy(() => import("./ThreeBackground"));
 
 const HeroSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -15,43 +17,25 @@ const HeroSection = () => {
     // Headline animation
     tl.fromTo(
       headlineRef.current,
-      { opacity: 0, y: 60, filter: 'blur(10px)' },
-      { opacity: 1, y: 0, filter: 'blur(0px)', duration: 1, ease: 'power3.out' }
+      { opacity: 0, y: 60, filter: "blur(10px)" },
+      { opacity: 1, y: 0, filter: "blur(0px)", duration: 1, ease: "power3.out" }
     );
 
     // Subtitle animation
     tl.fromTo(
       subtitleRef.current,
       { opacity: 0, y: 40 },
-      { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' },
-      '-=0.6'
+      { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" },
+      "-=0.6"
     );
 
     // CTA buttons animation
     tl.fromTo(
       ctaRef.current?.children || [],
       { opacity: 0, y: 30 },
-      { opacity: 1, y: 0, duration: 0.6, stagger: 0.2, ease: 'power3.out' },
-      '-=0.4'
+      { opacity: 1, y: 0, duration: 0.6, stagger: 0.2, ease: "power3.out" },
+      "-=0.4"
     );
-
-    // Spline container animation
-    tl.fromTo(
-      splineRef.current,
-      { opacity: 0, scale: 0.9 },
-      { opacity: 1, scale: 1, duration: 1.2, ease: 'power3.out' },
-      '-=0.8'
-    );
-
-    // Floating orbs animation
-    gsap.to('.hero-orb', {
-      y: -30,
-      duration: 4,
-      repeat: -1,
-      yoyo: true,
-      ease: 'power1.inOut',
-      stagger: 0.5,
-    });
 
     return () => {
       tl.kill();
@@ -67,59 +51,59 @@ const HeroSection = () => {
       {/* Background gradient */}
       <div className="absolute inset-0 bg-hero-gradient pointer-events-none" />
 
-      {/* Floating orbs */}
-      <div className="hero-orb glow-orb w-64 h-64 -top-20 -left-20 opacity-60" />
-      <div className="hero-orb glow-orb glow-orb-cyan w-96 h-96 top-1/4 -right-32 opacity-40" />
-      <div className="hero-orb glow-orb w-48 h-48 bottom-20 left-1/4 opacity-50" />
+      {/* Three.js 3D Background */}
+      <Suspense fallback={<div className="absolute inset-0 z-0" />}>
+        <ThreeBackground />
+      </Suspense>
 
-      {/* Spline 3D Background */}
-      <div
-        ref={splineRef}
-        className="absolute inset-0 z-0"
-      >
-        <iframe
-          src="https://my.spline.design/orb-wkMkZ5NwjRAdEHVgkdLhF6lB/"
-          frameBorder="0"
-          width="100%"
-          height="100%"
-          className="absolute inset-0"
-          title="3D Orb"
-        />
-        {/* Overlay to allow text interaction */}
-        <div className="absolute inset-0 bg-gradient-to-b from-background/30 via-transparent to-background pointer-events-none" />
-      </div>
+      {/* Overlay to allow text interaction */}
+      <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-transparent to-background/60 pointer-events-none z-10" />
 
       {/* Content */}
-      <div className="container relative z-10 mx-auto px-6 pt-24 flex items-center justify-center min-h-screen">
-        <div className="text-center max-w-3xl">
-          <p className="text-primary font-medium mb-4 tracking-widest uppercase text-sm">
-            Welcome to my portfolio
+      <div className="container relative z-10 mx-auto px-4 sm:px-6 flex items-center justify-center min-h-screen -mt-16 sm:-mt-20">
+        <div className="text-center max-w-4xl w-full">
+          <div className="inline-flex items-center gap-2 mb-4 sm:mb-6 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-primary/10 border border-primary/20">
+            <span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+            <p className="text-primary font-medium tracking-wide text-xs sm:text-sm">
+              Available for opportunities
+            </p>
+          </div>
+
+          <p className="text-muted-foreground mb-2 sm:mb-4 text-base sm:text-lg">
+            Hi, I'm
           </p>
 
           <h1
             ref={headlineRef}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6"
+            className="font-bold leading-tight mb-4 sm:mb-6 whitespace-nowrap"
+            style={{ fontSize: "clamp(1.75rem, 8vw, 6rem)" }}
           >
-            Hi, I'm{' '}
-            <span className="gradient-text">Bachchu Shreyansh</span>
-            <br />
-            <span className="text-glow">AI Engineer</span>
+            Bachchu <span className="gradient-text">Shreyansh</span>
           </h1>
+
+          <p className="text-xl sm:text-2xl md:text-3xl text-muted-foreground mb-6 sm:mb-8">
+            AI Engineer
+          </p>
 
           <p
             ref={subtitleRef}
-            className="text-lg md:text-xl text-muted-foreground max-w-xl mx-auto mb-10 leading-relaxed"
+            className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8 sm:mb-10 leading-relaxed px-2"
           >
-            Crafting intelligent solutions at the intersection of machine learning, 
-            deep learning, and modern web technologies. Let's build the future together.
+            Crafting intelligent solutions with cutting-edge AI & ML
+            technologies
           </p>
 
-          <div ref={ctaRef} className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div
+            ref={ctaRef}
+            className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4 sm:px-0"
+          >
             <a
               href="#contact"
               onClick={(e) => {
                 e.preventDefault();
-                document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' });
+                document
+                  .querySelector("#contact")
+                  ?.scrollIntoView({ behavior: "smooth" });
               }}
               className="btn-neon inline-flex items-center justify-center gap-2"
             >
@@ -129,8 +113,7 @@ const HeroSection = () => {
             <a
               href="/resume.pdf"
               className="btn-glass inline-flex items-center justify-center gap-2"
-              target="_blank"
-              rel="noopener noreferrer"
+              download="Bachchu_Shreyansh_Resume.pdf"
             >
               <DownloadSimple size={20} weight="light" />
               Download Resume

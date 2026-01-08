@@ -1,0 +1,28 @@
+{
+  "name": "Bachchu Shreyansh Portfolio",
+  "short_name": "Shreyansh",
+  "description": "AI Engineer specializing in machine learning, deep learning, and full-stack development",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a14",
+  "theme_color": "#8b5cf6",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["portfolio", "technology", "development"],
+  "lang": "en-US",
+  "dir": "ltr"
+}
