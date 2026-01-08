@@ -154,4 +154,4 @@ MIT License - feel free to use this template for your own portfolio!
 
 ---
 
-Built with ❤️ by Bachchu Shreyansh
+Built by Bachchu Shreyansh
