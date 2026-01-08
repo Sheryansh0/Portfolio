@@ -4,18 +4,42 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { 
   GithubLogo, 
   LinkedinLogo, 
+  TwitterLogo,
   EnvelopeSimple,
+  Phone,
+  MapPin,
   PaperPlaneTilt,
   DownloadSimple
 } from '@phosphor-icons/react';
 
 gsap.registerPlugin(ScrollTrigger);
 
+const contactInfo = [
+  {
+    icon: EnvelopeSimple,
+    label: 'Email',
+    value: 'shreyansh@example.com',
+    href: 'mailto:shreyansh@example.com',
+  },
+  {
+    icon: Phone,
+    label: 'Phone',
+    value: '+91 9876543210',
+    href: 'tel:+919876543210',
+  },
+  {
+    icon: MapPin,
+    label: 'Location',
+    value: 'India',
+    href: null,
+  },
+];
+
 const ContactSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const titleRef = useRef<HTMLDivElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
-  const socialsRef = useRef<HTMLDivElement>(null);
+  const infoRef = useRef<HTMLDivElement>(null);
 
   const [formData, setFormData] = useState({
     name: '',
@@ -28,9 +52,9 @@ const ContactSection = () => {
     const section = sectionRef.current;
     const title = titleRef.current;
     const form = formRef.current;
-    const socials = socialsRef.current;
+    const info = infoRef.current;
 
-    if (!section || !title || !form || !socials) return;
+    if (!section || !title || !form || !info) return;
 
     // Title animation
     gsap.fromTo(
@@ -68,19 +92,19 @@ const ContactSection = () => {
       }
     );
 
-    // Socials animation
+    // Info cards animation
     gsap.fromTo(
-      socials.children,
-      { y: 30, opacity: 0 },
+      info.querySelectorAll('.info-card'),
+      { x: 60, opacity: 0 },
       {
-        y: 0,
+        x: 0,
         opacity: 1,
-        duration: 0.5,
+        duration: 0.6,
         stagger: 0.1,
         ease: 'power3.out',
         scrollTrigger: {
-          trigger: socials,
-          start: 'top 90%',
+          trigger: info,
+          start: 'top 80%',
           toggleActions: 'play none none reverse',
         },
       }
@@ -108,7 +132,7 @@ const ContactSection = () => {
       gsap.fromTo(
         button,
         { scale: 1 },
-        { scale: 1.1, duration: 0.2, yoyo: true, repeat: 1, ease: 'power2.out' }
+        { scale: 1.05, duration: 0.2, yoyo: true, repeat: 1, ease: 'power2.out' }
       );
     }
   };
@@ -131,22 +155,26 @@ const ContactSection = () => {
       <div className="glow-orb glow-orb-cyan w-64 h-64 bottom-20 right-1/4 opacity-15" />
 
       <div className="container mx-auto px-6">
-        <div className="max-w-2xl mx-auto">
-          {/* Section header */}
-          <div ref={titleRef} className="text-center mb-12">
-            <h2 className="section-title">
-              Get In <span className="gradient-text">Touch</span>
-            </h2>
-            <p className="section-subtitle mx-auto">
-              Have a project in mind? Let's work together to create something amazing.
-            </p>
-          </div>
+        {/* Section header */}
+        <div ref={titleRef} className="text-center mb-12">
+          <p className="text-primary font-medium mb-4 tracking-widest uppercase text-sm">
+            Get In Touch
+          </p>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+            Let's Work Together
+          </h2>
+          <p className="section-subtitle mx-auto">
+            Have a project in mind? Let's discuss how we can bring your ideas to life with AI.
+          </p>
+        </div>
 
+        {/* Main content grid */}
+        <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
           {/* Contact form */}
           <form
             ref={formRef}
             onSubmit={handleSubmit}
-            className="glass-card p-8 space-y-6"
+            className="space-y-6"
           >
             <div className="form-field">
               <label htmlFor="name" className="block text-sm font-medium mb-2">
@@ -158,7 +186,7 @@ const ContactSection = () => {
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
-                className="input-glass"
+                className="w-full px-4 py-3 rounded-lg bg-card/50 border border-border/50 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary/50 transition-colors"
                 placeholder="Your name"
                 required
               />
@@ -174,7 +202,7 @@ const ContactSection = () => {
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                className="input-glass"
+                className="w-full px-4 py-3 rounded-lg bg-card/50 border border-border/50 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary/50 transition-colors"
                 placeholder="your@email.com"
                 required
               />
@@ -189,8 +217,8 @@ const ContactSection = () => {
                 name="message"
                 value={formData.message}
                 onChange={handleChange}
-                rows={5}
-                className="input-glass resize-none"
+                rows={6}
+                className="w-full px-4 py-3 rounded-lg bg-card/50 border border-border/50 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary/50 transition-colors resize-none"
                 placeholder="Tell me about your project..."
                 required
               />
@@ -199,72 +227,97 @@ const ContactSection = () => {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="btn-neon w-full flex items-center justify-center gap-2 disabled:opacity-50"
+              className="w-full py-4 rounded-lg bg-primary text-primary-foreground font-medium flex items-center justify-center gap-2 hover:bg-primary/90 transition-colors disabled:opacity-50"
             >
-              <span className="relative z-10 flex items-center gap-2">
-                {isSubmitting ? (
-                  'Sending...'
-                ) : (
-                  <>
-                    Send Message
-                    <PaperPlaneTilt size={20} weight="bold" />
-                  </>
-                )}
-              </span>
+              {isSubmitting ? (
+                'Sending...'
+              ) : (
+                <>
+                  Send Message
+                  <PaperPlaneTilt size={20} weight="bold" />
+                </>
+              )}
             </button>
           </form>
 
-          {/* Social links */}
-          <div
-            ref={socialsRef}
-            className="flex items-center justify-center gap-4 mt-8"
-          >
-            <a
-              href="https://github.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-3 glass-card rounded-full hover:border-primary transition-all duration-300 group"
-            >
-              <GithubLogo
-                size={24}
-                weight="light"
-                className="text-muted-foreground group-hover:text-primary transition-colors"
-              />
-            </a>
-            <a
-              href="https://linkedin.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-3 glass-card rounded-full hover:border-primary transition-all duration-300 group"
-            >
-              <LinkedinLogo
-                size={24}
-                weight="light"
-                className="text-muted-foreground group-hover:text-primary transition-colors"
-              />
-            </a>
-            <a
-              href="mailto:shreyansh@example.com"
-              className="p-3 glass-card rounded-full hover:border-primary transition-all duration-300 group"
-            >
-              <EnvelopeSimple
-                size={24}
-                weight="light"
-                className="text-muted-foreground group-hover:text-primary transition-colors"
-              />
-            </a>
-            <a
-              href="/resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-3 glass-card rounded-full hover:border-primary transition-all duration-300 group"
-            >
-              <DownloadSimple
-                size={24}
-                weight="light"
-                className="text-muted-foreground group-hover:text-primary transition-colors"
-              />
-            </a>
+          {/* Contact info */}
+          <div ref={infoRef} className="space-y-6">
+            {/* Info cards */}
+            {contactInfo.map((item) => {
+              const Icon = item.icon;
+              const content = (
+                <div className="info-card flex items-center gap-4 p-4 rounded-xl bg-card/30 border border-border/50 hover:border-primary/30 transition-colors">
+                  <div className="p-3 rounded-lg bg-primary/10 border border-primary/30">
+                    <Icon size={24} weight="light" className="text-primary" />
+                  </div>
+                  <div>
+                    <p className="text-sm text-muted-foreground">{item.label}</p>
+                    <p className="font-medium text-foreground">{item.value}</p>
+                  </div>
+                </div>
+              );
+
+              return item.href ? (
+                <a key={item.label} href={item.href} className="block">
+                  {content}
+                </a>
+              ) : (
+                <div key={item.label}>{content}</div>
+              );
+            })}
+
+            {/* Separator */}
+            <div className="border-t border-border/30 pt-6">
+              <p className="text-sm text-muted-foreground mb-4">Connect with me</p>
+              
+              <div className="flex items-center gap-3">
+                <a
+                  href="https://github.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-3 rounded-lg bg-card/30 border border-border/50 hover:border-primary/50 transition-colors group"
+                >
+                  <GithubLogo
+                    size={20}
+                    weight="light"
+                    className="text-muted-foreground group-hover:text-foreground transition-colors"
+                  />
+                </a>
+                <a
+                  href="https://linkedin.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-3 rounded-lg bg-card/30 border border-border/50 hover:border-primary/50 transition-colors group"
+                >
+                  <LinkedinLogo
+                    size={20}
+                    weight="light"
+                    className="text-muted-foreground group-hover:text-foreground transition-colors"
+                  />
+                </a>
+                <a
+                  href="https://twitter.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-3 rounded-lg bg-card/30 border border-border/50 hover:border-primary/50 transition-colors group"
+                >
+                  <TwitterLogo
+                    size={20}
+                    weight="light"
+                    className="text-muted-foreground group-hover:text-foreground transition-colors"
+                  />
+                </a>
+                <a
+                  href="/resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-4 py-2 rounded-lg border border-primary/50 text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 flex items-center gap-2 text-sm font-medium"
+                >
+                  <DownloadSimple size={18} weight="light" />
+                  Download CV
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </div>

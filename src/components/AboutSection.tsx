@@ -5,9 +5,9 @@ import {
   Code, 
   Brain, 
   Database, 
-  GitBranch, 
-  Lightning,
-  Atom,
+  Cloud,
+  Terminal,
+  Cube,
   DownloadSimple
 } from '@phosphor-icons/react';
 import profileImage from '@/assets/profile.png';
@@ -17,10 +17,12 @@ gsap.registerPlugin(ScrollTrigger);
 const skills = [
   { name: 'Python', icon: Code },
   { name: 'TensorFlow', icon: Brain },
-  { name: 'PyTorch', icon: Atom },
-  { name: 'React', icon: Lightning },
-  { name: 'SQL', icon: Database },
-  { name: 'Git', icon: GitBranch },
+  { name: 'PyTorch', icon: Brain },
+  { name: 'React', icon: Code },
+  { name: 'FastAPI', icon: Terminal },
+  { name: 'Docker', icon: Cube },
+  { name: 'AWS', icon: Cloud },
+  { name: 'MongoDB', icon: Database },
 ];
 
 const AboutSection = () => {
@@ -115,11 +117,11 @@ const AboutSection = () => {
               <div className="absolute -inset-4 rounded-full bg-gradient-to-r from-primary via-accent to-secondary opacity-30 blur-2xl animate-pulse-glow" />
               
               {/* Image container */}
-              <div className="profile-glow rounded-full overflow-hidden aspect-square">
+              <div className="relative rounded-full overflow-hidden aspect-square border-2 border-primary/30">
                 <img
                   src={profileImage}
                   alt="Bachchu Shreyansh"
-                  className="relative z-10 w-full h-full object-cover rounded-full"
+                  className="relative z-10 w-full h-full object-cover object-top scale-100"
                 />
               </div>
             </div>
@@ -144,17 +146,20 @@ const AboutSection = () => {
               boundaries of what's possible with artificial intelligence.
             </p>
 
-            {/* Skills */}
-            <div ref={skillsRef} className="flex flex-wrap gap-3 mb-8">
+            {/* Tech Stack Title */}
+            <h3 className="text-xl font-semibold mb-4">Tech Stack</h3>
+
+            {/* Skills Grid */}
+            <div ref={skillsRef} className="grid grid-cols-4 gap-3 mb-8">
               {skills.map((skill) => {
                 const Icon = skill.icon;
                 return (
                   <div
                     key={skill.name}
-                    className="skill-badge flex items-center gap-2"
+                    className="flex flex-col items-center justify-center gap-2 p-4 rounded-xl bg-card/50 border border-border/50 hover:border-primary/50 transition-all duration-300 group"
                   >
-                    <Icon size={18} weight="light" className="text-primary" />
-                    <span>{skill.name}</span>
+                    <Icon size={24} weight="light" className="text-muted-foreground group-hover:text-primary transition-colors" />
+                    <span className="text-xs text-muted-foreground group-hover:text-foreground transition-colors">{skill.name}</span>
                   </div>
                 );
               })}
@@ -163,7 +168,7 @@ const AboutSection = () => {
             {/* Resume button */}
             <a
               href="/resume.pdf"
-              className="btn-glass inline-flex items-center gap-2"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-border/50 bg-card/30 text-muted-foreground hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-300"
               target="_blank"
               rel="noopener noreferrer"
             >
