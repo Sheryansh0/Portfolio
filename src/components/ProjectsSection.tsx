@@ -112,28 +112,16 @@ const ProjectsSection = () => {
           </p>
         </div>
 
-        {/* Projects horizontal scroll */}
+        {/* Projects vertical grid */}
         <div
           ref={cardsContainerRef}
-          className="flex gap-6 overflow-x-auto pb-6 snap-x snap-mandatory scrollbar-hide"
-          style={{
-            scrollbarWidth: 'none',
-            msOverflowStyle: 'none',
-          }}
+          className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto"
         >
           {projects.map((project) => (
-            <div key={project.title} className="snap-start">
+            <div key={project.title}>
               <ProjectCard {...project} />
             </div>
           ))}
-        </div>
-
-        {/* Scroll hint for mobile */}
-        <div className="flex justify-center mt-6 md:hidden">
-          <div className="flex items-center gap-2 text-sm text-muted-foreground">
-            <span>Swipe to explore</span>
-            <span className="animate-pulse">→</span>
-          </div>
         </div>
       </div>
     </section>

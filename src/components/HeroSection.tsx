@@ -90,8 +90,8 @@ const HeroSection = () => {
       </div>
 
       {/* Content */}
-      <div className="container relative z-10 mx-auto px-6 pt-24">
-        <div className="max-w-3xl">
+      <div className="container relative z-10 mx-auto px-6 pt-24 flex items-center justify-center min-h-screen">
+        <div className="text-center max-w-3xl">
           <p className="text-primary font-medium mb-4 tracking-widest uppercase text-sm">
             Welcome to my portfolio
           </p>
@@ -108,13 +108,13 @@ const HeroSection = () => {
 
           <p
             ref={subtitleRef}
-            className="text-lg md:text-xl text-muted-foreground max-w-xl mb-10 leading-relaxed"
+            className="text-lg md:text-xl text-muted-foreground max-w-xl mx-auto mb-10 leading-relaxed"
           >
             Crafting intelligent solutions at the intersection of machine learning, 
             deep learning, and modern web technologies. Let's build the future together.
           </p>
 
-          <div ref={ctaRef} className="flex flex-col sm:flex-row gap-4">
+          <div ref={ctaRef} className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
               href="#contact"
               onClick={(e) => {
