@@ -6,6 +6,7 @@ import {
   Target,
   Code,
   Medal,
+  ArrowSquareOut,
 } from "@phosphor-icons/react";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -21,6 +22,8 @@ const achievements = [
     description:
       "Secured second position in a competitive hackathon with innovative AI solution (₹15,000 cash prize)",
     featured: true,
+    link: "https://res.cloudinary.com/djfhbyk7a/image/upload/v1755975763/hackathon_certificate_ee5a4x.jpg",
+    linkLabel: "View Certificate",
   },
   {
     id: 2,
@@ -32,6 +35,8 @@ const achievements = [
     description:
       "Ranked among top 36 performers in competitive programming at university level",
     featured: true,
+    link: "https://www.geeksforgeeks.org/profile/bachchushreyansh?tab=activity",
+    linkLabel: "View Profile",
   },
   {
     id: 3,
@@ -43,6 +48,8 @@ const achievements = [
     description:
       "Demonstrated strong problem-solving skills across various algorithmic challenges",
     featured: false,
+    link: "https://leetcode.com/u/bachchushreyansh/",
+    linkLabel: "View Profile",
   },
   {
     id: 4,
@@ -54,6 +61,8 @@ const achievements = [
     description:
       "Achieved top position on Code360 platform in March and October 2024",
     featured: false,
+    link: "https://www.naukri.com/code360/profile/Bachchu",
+    linkLabel: "View Profile",
   },
 ];
 
@@ -187,9 +196,21 @@ const AchievementsSection = () => {
                       {achievement.title}
                     </h3>
 
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-sm text-muted-foreground mb-3">
                       {achievement.description}
                     </p>
+
+                    {achievement.link && (
+                      <a
+                        href={achievement.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-accent transition-colors duration-300"
+                      >
+                        {achievement.linkLabel}
+                        <ArrowSquareOut size={16} weight="bold" />
+                      </a>
+                    )}
                   </div>
                 </div>
               </div>
@@ -250,9 +271,22 @@ const AchievementsSection = () => {
                   </p>
 
                   {/* Year */}
-                  <span className="text-sm text-primary font-medium">
+                  <span className="text-sm text-muted-foreground font-medium mb-3">
                     {achievement.year}
                   </span>
+
+                  {/* Link */}
+                  {achievement.link && (
+                    <a
+                      href={achievement.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-accent transition-colors duration-300"
+                    >
+                      {achievement.linkLabel}
+                      <ArrowSquareOut size={16} weight="bold" />
+                    </a>
+                  )}
                 </div>
               </div>
             );
