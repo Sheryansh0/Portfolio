@@ -69,7 +69,7 @@ const Navigation = () => {
           </a>
 
           {/* Desktop navigation */}
-          <div className="hidden md:flex items-center gap-2">
+          <div className="hidden md:flex items-center gap-8">
             {navItems.map((item) => (
               <a
                 key={item.label}
@@ -78,7 +78,7 @@ const Navigation = () => {
                   e.preventDefault();
                   handleNavClick(item.href);
                 }}
-                className="nav-link"
+                className="nav-link text-base"
               >
                 {item.label}
               </a>
