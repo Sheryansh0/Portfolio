@@ -212,33 +212,33 @@ const ContactSection = () => {
     <section
       ref={sectionRef}
       id="contact"
-      className="relative py-24 md:py-32 overflow-hidden"
+      className="relative py-16 sm:py-24 md:py-32 overflow-hidden"
     >
       {/* Background */}
-      <div className="glow-orb w-80 h-80 top-0 left-1/4 opacity-20" />
-      <div className="glow-orb glow-orb-cyan w-64 h-64 bottom-20 right-1/4 opacity-15" />
+      <div className="glow-orb w-60 sm:w-80 h-60 sm:h-80 top-0 left-1/4 opacity-20" />
+      <div className="glow-orb glow-orb-cyan w-48 sm:w-64 h-48 sm:h-64 bottom-20 right-1/4 opacity-15" />
 
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto px-4 sm:px-6">
         {/* Section header */}
-        <div ref={titleRef} className="text-center mb-12">
-          <p className="text-primary font-medium mb-4 tracking-widest uppercase text-sm">
+        <div ref={titleRef} className="text-center mb-8 sm:mb-12">
+          <p className="text-primary font-medium mb-3 sm:mb-4 tracking-widest uppercase text-xs sm:text-sm">
             Get In Touch
           </p>
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4">
             Let's Work Together
           </h2>
-          <p className="section-subtitle mx-auto">
+          <p className="text-muted-foreground text-sm sm:text-base lg:text-lg max-w-2xl mx-auto px-4">
             Have a project in mind? Let's discuss how we can bring your ideas to
             life with AI.
           </p>
         </div>
 
         {/* Main content grid */}
-        <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 max-w-6xl mx-auto">
           {/* Contact form */}
-          <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
+          <form ref={formRef} onSubmit={handleSubmit} className="space-y-4 sm:space-y-6 order-2 lg:order-1">
             <div className="form-field">
-              <label htmlFor="name" className="block text-sm font-medium mb-2">
+              <label htmlFor="name" className="block text-xs sm:text-sm font-medium mb-1.5 sm:mb-2">
                 Name
               </label>
               <input
@@ -247,14 +247,14 @@ const ContactSection = () => {
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
-                className="w-full px-4 py-3 rounded-lg bg-card/50 border border-border/50 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary/50 transition-colors"
+                className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg bg-card/50 border border-border/50 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary/50 transition-colors text-sm sm:text-base"
                 placeholder="Your name"
                 required
               />
             </div>
 
             <div className="form-field">
-              <label htmlFor="email" className="block text-sm font-medium mb-2">
+              <label htmlFor="email" className="block text-xs sm:text-sm font-medium mb-1.5 sm:mb-2">
                 Email
               </label>
               <input
@@ -263,7 +263,7 @@ const ContactSection = () => {
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                className="w-full px-4 py-3 rounded-lg bg-card/50 border border-border/50 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary/50 transition-colors"
+                className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg bg-card/50 border border-border/50 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary/50 transition-colors text-sm sm:text-base"
                 placeholder="your@email.com"
                 required
               />
@@ -272,7 +272,7 @@ const ContactSection = () => {
             <div className="form-field">
               <label
                 htmlFor="message"
-                className="block text-sm font-medium mb-2"
+                className="block text-xs sm:text-sm font-medium mb-1.5 sm:mb-2"
               >
                 Message
               </label>
@@ -281,8 +281,8 @@ const ContactSection = () => {
                 name="message"
                 value={formData.message}
                 onChange={handleChange}
-                rows={6}
-                className="w-full px-4 py-3 rounded-lg bg-card/50 border border-border/50 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary/50 transition-colors resize-none"
+                rows={5}
+                className="w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg bg-card/50 border border-border/50 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary/50 transition-colors resize-none text-sm sm:text-base"
                 placeholder="Tell me about your project..."
                 required
               />
@@ -291,7 +291,7 @@ const ContactSection = () => {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full py-4 rounded-lg bg-primary text-primary-foreground font-medium flex items-center justify-center gap-2 hover:bg-primary/90 transition-colors disabled:opacity-50"
+              className="w-full py-3 sm:py-4 rounded-lg bg-primary text-primary-foreground font-medium flex items-center justify-center gap-2 hover:bg-primary/90 transition-colors disabled:opacity-50 text-sm sm:text-base"
             >
               {isSubmitting ? (
                 "Sending..."
@@ -305,20 +305,20 @@ const ContactSection = () => {
           </form>
 
           {/* Contact info */}
-          <div ref={infoRef} className="space-y-6">
+          <div ref={infoRef} className="space-y-4 sm:space-y-6 order-1 lg:order-2">
             {/* Info cards */}
             {contactInfo.map((item) => {
               const Icon = item.icon;
               const content = (
-                <div className="info-card flex items-center gap-4 p-4 rounded-xl bg-card/30 border border-border/50 hover:border-primary/30 transition-colors">
-                  <div className="p-3 rounded-lg bg-primary/10 border border-primary/30">
-                    <Icon size={24} weight="light" className="text-primary" />
+                <div className="info-card flex items-center gap-3 sm:gap-4 p-3 sm:p-4 rounded-lg sm:rounded-xl bg-card/30 border border-border/50 hover:border-primary/30 transition-colors">
+                  <div className="p-2 sm:p-3 rounded-md sm:rounded-lg bg-primary/10 border border-primary/30">
+                    <Icon size={20} weight="light" className="text-primary sm:w-6 sm:h-6" />
                   </div>
                   <div>
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-xs sm:text-sm text-muted-foreground">
                       {item.label}
                     </p>
-                    <p className="font-medium text-foreground">{item.value}</p>
+                    <p className="font-medium text-foreground text-sm sm:text-base">{item.value}</p>
                   </div>
                 </div>
               );
@@ -333,46 +333,46 @@ const ContactSection = () => {
             })}
 
             {/* Separator */}
-            <div className="border-t border-border/30 pt-6">
-              <p className="text-base text-muted-foreground mb-6">
+            <div className="border-t border-border/30 pt-4 sm:pt-6">
+              <p className="text-sm sm:text-base text-muted-foreground mb-4 sm:mb-6">
                 Connect with me
               </p>
 
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-3 sm:gap-4">
                 <a
                   href="https://github.com/Sheryansh0"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-4 rounded-xl bg-card/30 border border-border/50 hover:border-primary/50 hover:bg-card/50 transition-all duration-300 group"
+                  className="p-3 sm:p-4 rounded-lg sm:rounded-xl bg-card/30 border border-border/50 hover:border-primary/50 hover:bg-card/50 transition-all duration-300 group"
                 >
                   <GithubLogo
-                    size={32}
+                    size={24}
                     weight="light"
-                    className="text-muted-foreground group-hover:text-foreground transition-colors"
+                    className="text-muted-foreground group-hover:text-foreground transition-colors sm:w-8 sm:h-8"
                   />
                 </a>
                 <a
                   href="https://www.linkedin.com/in/bachchu-shreyansh/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-4 rounded-xl bg-card/30 border border-border/50 hover:border-primary/50 hover:bg-card/50 transition-all duration-300 group"
+                  className="p-3 sm:p-4 rounded-lg sm:rounded-xl bg-card/30 border border-border/50 hover:border-primary/50 hover:bg-card/50 transition-all duration-300 group"
                 >
                   <LinkedinLogo
-                    size={32}
+                    size={24}
                     weight="light"
-                    className="text-muted-foreground group-hover:text-foreground transition-colors"
+                    className="text-muted-foreground group-hover:text-foreground transition-colors sm:w-8 sm:h-8"
                   />
                 </a>
                 <a
                   href="https://x.com/BACHCHUSHR37310"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-4 rounded-xl bg-card/30 border border-border/50 hover:border-primary/50 hover:bg-card/50 transition-all duration-300 group"
+                  className="p-3 sm:p-4 rounded-lg sm:rounded-xl bg-card/30 border border-border/50 hover:border-primary/50 hover:bg-card/50 transition-all duration-300 group"
                 >
                   <TwitterLogo
-                    size={32}
+                    size={24}
                     weight="light"
-                    className="text-muted-foreground group-hover:text-foreground transition-colors"
+                    className="text-muted-foreground group-hover:text-foreground transition-colors sm:w-8 sm:h-8"
                   />
                 </a>
               </div>

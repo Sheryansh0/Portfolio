@@ -50,14 +50,14 @@ const Footer = () => {
   return (
     <footer
       ref={footerRef}
-      className="relative py-12 border-t border-border overflow-hidden"
+      className="relative py-8 sm:py-12 border-t border-border overflow-hidden"
     >
       {/* Background particles */}
-      <div className="glow-orb w-40 h-40 bottom-0 left-1/4 opacity-10" />
-      <div className="glow-orb glow-orb-cyan w-32 h-32 top-0 right-1/3 opacity-10" />
+      <div className="glow-orb w-32 sm:w-40 h-32 sm:h-40 bottom-0 left-1/4 opacity-10" />
+      <div className="glow-orb glow-orb-cyan w-24 sm:w-32 h-24 sm:h-32 top-0 right-1/3 opacity-10" />
 
-      <div className="container mx-auto px-6">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+      <div className="container mx-auto px-4 sm:px-6">
+        <div className="flex flex-col items-center gap-6 sm:gap-8 md:flex-row md:justify-between">
           {/* Tagline */}
           <div className="text-center md:text-left">
             <p className="text-sm text-muted-foreground">
@@ -66,7 +66,7 @@ const Footer = () => {
           </div>
 
           {/* Navigation */}
-          <nav className="flex flex-wrap justify-center gap-6">
+          <nav className="flex flex-wrap justify-center gap-4 sm:gap-6">
             {["Home", "About", "Projects", "Achievements", "Contact"].map((item) => (
               <a
                 key={item}
@@ -75,7 +75,7 @@ const Footer = () => {
                   e.preventDefault();
                   handleNavClick(`#${item.toLowerCase()}`);
                 }}
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                className="text-xs sm:text-sm text-muted-foreground hover:text-foreground transition-colors"
               >
                 {item}
               </a>
@@ -83,14 +83,14 @@ const Footer = () => {
             <a
               href="/resume.pdf"
               download="Bachchu_Shreyansh_Resume.pdf"
-              className="text-sm text-muted-foreground hover:text-primary transition-colors"
+              className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors"
             >
               Resume
             </a>
           </nav>
 
           {/* Social icons */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3 sm:gap-4">
             <a
               href="https://github.com/Sheryansh0"
               target="_blank"
@@ -117,8 +117,8 @@ const Footer = () => {
         </div>
 
         {/* Copyright */}
-        <div className="mt-8 pt-8 border-t border-border text-center">
-          <p className="text-sm text-muted-foreground flex items-center justify-center gap-1">
+        <div className="mt-6 sm:mt-8 pt-6 sm:pt-8 border-t border-border text-center">
+          <p className="text-xs sm:text-sm text-muted-foreground flex items-center justify-center gap-1">
             Made by Bachchu Shreyansh © {new Date().getFullYear()}
           </p>
         </div>

@@ -112,29 +112,29 @@ const ProjectsSection = () => {
     <section
       ref={sectionRef}
       id="projects"
-      className="relative py-24 md:py-32 overflow-hidden"
+      className="relative py-16 sm:py-24 md:py-32 overflow-hidden"
     >
       {/* Background elements */}
-      <div className="glow-orb w-96 h-96 top-1/4 -right-48 opacity-20" />
-      <div className="glow-orb glow-orb-cyan w-72 h-72 bottom-1/4 -left-36 opacity-15" />
+      <div className="glow-orb w-72 sm:w-96 h-72 sm:h-96 top-1/4 -right-48 opacity-20" />
+      <div className="glow-orb glow-orb-cyan w-56 sm:w-72 h-56 sm:h-72 bottom-1/4 -left-36 opacity-15" />
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         {/* Section header */}
-        <div ref={titleRef} className="text-center mb-16">
-          <p className="text-primary font-medium mb-4 tracking-widest uppercase text-sm">
+        <div ref={titleRef} className="text-center mb-10 sm:mb-16">
+          <p className="text-primary font-medium mb-3 sm:mb-4 tracking-widest uppercase text-xs sm:text-sm">
             Portfolio
           </p>
-          <h2 className="section-title">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4">
             Featured <span className="gradient-text">Projects</span>
           </h2>
-          <p className="section-subtitle mx-auto">
+          <p className="text-muted-foreground text-sm sm:text-base lg:text-lg max-w-2xl mx-auto px-4">
             A collection of my recent work showcasing AI, machine learning, and
             web development expertise.
           </p>
         </div>
 
         {/* Projects grid - Bento style */}
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
           {projects.map((project, index) => (
             <div
               key={project.id}
@@ -191,20 +191,20 @@ const ProjectsSection = () => {
               </div>
 
               {/* Content */}
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors duration-300">
+              <div className="p-4 sm:p-6">
+                <h3 className="text-lg sm:text-xl font-bold text-foreground group-hover:text-primary transition-colors duration-300">
                   {project.title}
                 </h3>
-                <p className="mt-2 text-sm text-muted-foreground line-clamp-2">
+                <p className="mt-2 text-xs sm:text-sm text-muted-foreground line-clamp-2">
                   {project.description}
                 </p>
 
                 {/* Tech stack */}
-                <div className="flex flex-wrap gap-2 mt-4">
+                <div className="flex flex-wrap gap-1.5 sm:gap-2 mt-3 sm:mt-4">
                   {project.techStack.map((tech) => (
                     <span
                       key={tech}
-                      className="px-3 py-1 text-xs border border-primary/20 text-muted-foreground rounded-full"
+                      className="px-2 sm:px-3 py-0.5 sm:py-1 text-[10px] sm:text-xs border border-primary/20 text-muted-foreground rounded-full"
                       style={{
                         background: 'hsl(var(--primary) / 0.1)',
                       }}

@@ -109,17 +109,17 @@ const AboutSection = () => {
     <section
       ref={sectionRef}
       id="about"
-      className="relative py-24 md:py-32 overflow-hidden"
+      className="relative py-16 sm:py-24 md:py-32 overflow-hidden"
     >
       {/* Background elements */}
-      <div className="glow-orb w-80 h-80 -top-40 right-1/4 opacity-30" />
-      <div className="glow-orb glow-orb-cyan w-64 h-64 bottom-0 -left-32 opacity-20" />
+      <div className="glow-orb w-60 sm:w-80 h-60 sm:h-80 -top-40 right-1/4 opacity-30" />
+      <div className="glow-orb glow-orb-cyan w-48 sm:w-64 h-48 sm:h-64 bottom-0 -left-32 opacity-20" />
 
-      <div className="container mx-auto px-6">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <div className="container mx-auto px-4 sm:px-6">
+        <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-20 items-center">
           {/* Profile Image */}
-          <div ref={imageRef} className="relative">
-            <div className="relative max-w-md mx-auto lg:mx-0">
+          <div ref={imageRef} className="relative order-1 lg:order-none">
+            <div className="relative max-w-xs sm:max-w-sm md:max-w-md mx-auto lg:mx-0">
               {/* Outer ambient glow */}
               <div className="absolute -inset-16 rounded-full bg-gradient-to-r from-primary/30 via-accent/20 to-secondary/30 blur-3xl opacity-40" />
 
@@ -222,19 +222,19 @@ const AboutSection = () => {
           </div>
 
           {/* Content */}
-          <div ref={contentRef}>
-            <h2 className="section-title">
+          <div ref={contentRef} className="order-2 lg:order-none">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 text-center lg:text-left">
               About <span className="gradient-text">Me</span>
             </h2>
 
-            <p className="text-muted-foreground text-lg leading-relaxed mb-6">
+            <p className="text-muted-foreground text-base sm:text-lg leading-relaxed mb-4 sm:mb-6 text-center lg:text-left">
               I'm a passionate AI Engineer with expertise in building intelligent
               systems that solve real-world problems. With a strong foundation in
               machine learning, deep learning, and natural language processing, I
               create solutions that push the boundaries of what's possible.
             </p>
 
-            <p className="text-muted-foreground leading-relaxed mb-8">
+            <p className="text-muted-foreground text-sm sm:text-base leading-relaxed mb-6 sm:mb-8 text-center lg:text-left">
               My journey in AI began with a curiosity about how machines can learn
               and adapt. Today, I specialize in developing end-to-end ML pipelines,
               computer vision applications, and AI-powered automation tools that
@@ -242,23 +242,23 @@ const AboutSection = () => {
             </p>
 
             {/* Tech Stack Title */}
-            <h3 className="text-xl font-semibold mb-4">Tech Stack</h3>
+            <h3 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4">Tech Stack</h3>
 
             {/* Skills Grid */}
-            <div ref={skillsRef} className="grid grid-cols-4 gap-3 mb-8">
+            <div ref={skillsRef} className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-4 gap-2 sm:gap-3 mb-8">
               {skills.map((skill) => {
                 const Icon = skill.icon;
                 return (
                   <div
                     key={skill.name}
-                    className="flex flex-col items-center justify-center gap-2 p-4 rounded-xl bg-card/50 border border-border/50 hover:border-primary/50 transition-all duration-300 group"
+                    className="flex flex-col items-center justify-center gap-1.5 sm:gap-2 p-2.5 sm:p-4 rounded-lg sm:rounded-xl bg-card/50 border border-border/50 hover:border-primary/50 transition-all duration-300 group"
                   >
                     <Icon
-                      size={24}
+                      size={20}
                       weight="light"
-                      className="text-muted-foreground group-hover:text-primary transition-colors"
+                      className="text-muted-foreground group-hover:text-primary transition-colors sm:w-6 sm:h-6"
                     />
-                    <span className="text-xs text-muted-foreground group-hover:text-foreground transition-colors">
+                    <span className="text-[10px] sm:text-xs text-muted-foreground group-hover:text-foreground transition-colors text-center leading-tight">
                       {skill.name}
                     </span>
                   </div>

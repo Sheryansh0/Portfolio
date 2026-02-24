@@ -129,7 +129,7 @@
 
   /* Neon button */
   .btn-neon {
-    @apply relative px-8 py-4 rounded-lg font-semibold text-primary-foreground overflow-hidden transition-all duration-300;
+    @apply relative px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold text-primary-foreground overflow-hidden transition-all duration-300 text-sm sm:text-base;
     background: linear-gradient(135deg, hsl(var(--neon-violet)) 0%, hsl(var(--neon-magenta)) 100%);
     box-shadow: var(--shadow-neon);
   }
@@ -151,7 +151,7 @@
 
   /* Glass button */
   .btn-glass {
-    @apply relative px-8 py-4 rounded-lg font-semibold overflow-hidden transition-all duration-300;
+    @apply relative px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold overflow-hidden transition-all duration-300 text-sm sm:text-base;
     background: hsl(var(--glass-bg) / 0.6);
     backdrop-filter: blur(10px);
     border: 1px solid hsl(var(--neon-violet) / 0.5);
@@ -208,16 +208,16 @@
 
   /* Section title styling */
   .section-title {
-    @apply text-4xl md:text-5xl font-bold mb-4;
+    @apply text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4;
   }
 
   .section-subtitle {
-    @apply text-muted-foreground text-lg max-w-2xl;
+    @apply text-muted-foreground text-sm sm:text-base lg:text-lg max-w-2xl;
   }
 
   /* Skill badge */
   .skill-badge {
-    @apply px-4 py-2 rounded-full text-sm font-medium transition-all duration-300;
+    @apply px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-300;
     background: hsl(var(--glass-bg));
     border: 1px solid hsl(var(--border));
   }
@@ -311,12 +311,12 @@
 
 /* Preloader styles */
 .preloader {
-  @apply fixed inset-0 z-[9999] flex flex-col items-center justify-center;
+  @apply fixed inset-0 z-[9999] flex flex-col items-center justify-center px-4;
   background: hsl(var(--background));
 }
 
 .preloader-logo {
-  @apply text-5xl md:text-7xl font-bold mb-12;
+  @apply text-4xl sm:text-5xl md:text-7xl font-bold mb-8 sm:mb-12 text-center;
   background: linear-gradient(135deg, hsl(var(--neon-violet)), hsl(var(--neon-cyan)));
   -webkit-background-clip: text;
   background-clip: text;
@@ -324,7 +324,7 @@
 }
 
 .progress-container {
-  @apply w-64 md:w-80 h-1 rounded-full overflow-hidden;
+  @apply w-48 sm:w-64 md:w-80 h-1 rounded-full overflow-hidden;
   background: hsl(var(--muted));
 }
 

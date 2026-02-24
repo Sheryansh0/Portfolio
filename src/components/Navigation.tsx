@@ -48,10 +48,10 @@ const Navigation = () => {
       <nav
         ref={navRef}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled ? "glass-card py-4" : "py-6"
+          scrolled ? "glass-card py-3 sm:py-4" : "py-4 sm:py-6"
         }`}
       >
-        <div className="container mx-auto px-6 flex items-center justify-between">
+        <div className="container mx-auto px-4 sm:px-6 flex items-center justify-between">
           {/* Logo */}
           <a
             href="#home"
@@ -59,12 +59,12 @@ const Navigation = () => {
               e.preventDefault();
               handleNavClick("#home");
             }}
-            className="flex items-center gap-3"
+            className="flex items-center gap-2 sm:gap-3"
           >
             <img
               src="/logo.png"
               alt="Logo"
-              className="w-10 h-10 rounded-full object-cover"
+              className="w-8 h-8 sm:w-10 sm:h-10 rounded-full object-cover"
             />
           </a>
 

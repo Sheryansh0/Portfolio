@@ -210,25 +210,25 @@ const HeroSection = () => {
       <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-transparent to-background/60 pointer-events-none z-10" />
 
       {/* Content */}
-      <div className="container relative z-20 mx-auto px-6 sm:px-8 lg:px-16 flex items-center min-h-screen">
+      <div className="container relative z-20 mx-auto px-4 sm:px-6 lg:px-16 flex items-center min-h-screen pt-20 lg:pt-0">
         <div className="w-full flex flex-col lg:flex-row lg:justify-between lg:items-center">
           
           {/* Left side - Name and Title */}
           <div 
             ref={nameContainerRef}
-            className="lg:w-2/5 xl:w-1/3 text-center lg:text-left lg:-translate-y-20"
+            className="lg:w-2/5 xl:w-1/3 text-center lg:text-left lg:-translate-y-20 mb-8 lg:mb-0"
           >
             <p 
               ref={hiRef}
-              className="text-muted-foreground mb-2 sm:mb-3 text-base sm:text-lg opacity-0"
+              className="text-muted-foreground mb-1 sm:mb-2 text-sm sm:text-base lg:text-lg opacity-0"
             >
               Hi, I'm
             </p>
 
             <h1
               ref={textContainerRef}
-              className="font-bold leading-tight mb-3 sm:mb-4 min-h-[2.4em]"
-              style={{ fontSize: "clamp(2rem, 5vw, 4rem)", perspective: "1000px" }}
+              className="font-bold leading-tight mb-2 sm:mb-3 lg:mb-4 min-h-[2em] sm:min-h-[2.4em]"
+              style={{ fontSize: "clamp(1.75rem, 6vw, 4rem)", perspective: "1000px" }}
             >
               {currentText === 'name' ? (
                 <>
@@ -268,14 +268,14 @@ const HeroSection = () => {
               )}
             </h1>
 
-            <p className="text-base sm:text-lg md:text-xl text-muted-foreground mt-4 leading-relaxed max-w-md">
+            <p className="text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground mt-3 sm:mt-4 leading-relaxed max-w-md mx-auto lg:mx-0">
               Crafting intelligent solutions with cutting-edge AI & ML
               technologies
             </p>
 
             <div 
               ref={badgeRef}
-              className="mt-6 flex justify-center lg:justify-start"
+              className="mt-4 sm:mt-6 flex justify-center lg:justify-start"
             >
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-background/40 backdrop-blur-md border border-primary/30">
                 <span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
@@ -287,16 +287,27 @@ const HeroSection = () => {
 
             <div
               ref={ctaRef}
-              className="mt-6 flex justify-center lg:justify-start"
+              className="mt-4 sm:mt-6 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start items-center"
             >
               <a
                 href="/resume.pdf"
-                className="btn-glass inline-flex items-center justify-center gap-2"
+                className="btn-glass inline-flex items-center justify-center gap-2 text-sm sm:text-base px-6 py-3 sm:px-8 sm:py-4 w-full sm:w-auto"
                 download="Bachchu_Shreyansh_Resume.pdf"
               >
-                <DownloadSimple size={20} weight="light" />
+                <DownloadSimple size={18} weight="light" className="sm:w-5 sm:h-5" />
                 Download Resume
               </a>
+            </div>
+
+            {/* Mobile status indicators */}
+            <div className="mt-6 flex flex-wrap justify-center gap-2 lg:hidden">
+              <span className="px-3 py-1.5 text-xs rounded-full bg-green-500/10 border border-green-500/30 text-green-400 flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
+                Open to Work
+              </span>
+              <span className="px-3 py-1.5 text-xs rounded-full bg-white/5 border border-white/10 text-muted-foreground">
+                India / Remote
+              </span>
             </div>
           </div>
 
